@@ -1,6 +1,6 @@
-h1. Fichiers de conf Linux de Pataluc
+### Fichiers de conf Linux de Pataluc
 
-h2. ZSH
+## zsh
 
-h2. VIM
+## vim
 
