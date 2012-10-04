@@ -1,6 +1,5 @@
-Fichiers de conf Linux de Pataluc
-====
-
+Conf Linux
+===
 
 ### zsh
 
