@@ -318,4 +318,7 @@ zle -N copy-search-as-buffer
 #bindkey ^e copy-search-as-buffer
 
 
+
 cd ~/my-conf && git pull >> /dev/null
+
+cd -
