@@ -1,0 +1,10 @@
+[user]
+	name = Luc Fouin
+	email = luc.fouin@gmail.com
+[credential]
+	helper = cache --timeout=3600
+[alias]
+    st = status
+    df = diff
+    ci = commit
+    br = branch
