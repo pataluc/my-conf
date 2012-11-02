@@ -34,6 +34,8 @@ alias md='mkdir'
 alias rd='rmdir'
 alias upgrade='apt-get update && apt-get upgrade && apt-get clean'
 
+alias su="su -l"
+
 alias ack='ack-grep'
 
 
