@@ -319,6 +319,9 @@ zle -N copy-search-as-buffer
 
 
 
-cd ~/my-conf && git pull >> /dev/null
+#
+# Mise à jour auto de la conf
+#
+#cd ~/my-conf && git pull >> /dev/null
 
-cd -
+#cd -
