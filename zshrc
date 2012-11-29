@@ -8,27 +8,27 @@
 ################
 
 # Gestion du 'ls' : couleur & ne touche pas aux accents
-alias ls='ls --classify --tabsize=0 --literal --color=auto --show-control-chars --human-readable'
+alias ls='ls -F -T=0 -N -h'
 
 # Demande confirmation avant d'écraser un fichier
-alias cp='cp --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
 # Raccourcis pour 'ls'
-alias ll='ls -lh --group-directories-first'
+alias ll='ls -l'
 alias l='ll'
 alias lll='ll'
-alias lla='ls -lah --group-directories-first'
-alias lt='ls -lrth'
-alias lta='ls -larth'
+alias lla='ls -la'
+alias lt='ls -lrt'
+alias lta='ls -lart'
 
 # Quelques alias pratiques
 alias c='clear'
-alias less='less --quiet'
+alias less='less -q'
 alias s='cd ..'
-alias df='df --human-readable'
-alias du='du --human-readable'
+alias df='df -h'
+alias du='du -h'
 alias m='mutt -y'
 alias md='mkdir'
 alias rd='rmdir'
