@@ -8,7 +8,7 @@
 ################
 
 # Gestion du 'ls' : couleur & ne touche pas aux accents
-alias ls='ls -F -T=0 -N -h'
+alias ls='ls -F -T0 -N -h'
 
 # Demande confirmation avant d'écraser un fichier
 alias cp='cp -i'
