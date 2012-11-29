@@ -38,10 +38,6 @@ alias su="su -l"
 
 alias ack='ack-grep'
 
-
-alias ftpdbbn='lftp u48124681-luc@ftp.donboscobadminton.fr'
-
-
 #######################################
 # 2. Prompt et définition des touches #
 #######################################
