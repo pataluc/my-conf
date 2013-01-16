@@ -1,11 +1,13 @@
 # /etc/zsh/zshrc ou ~/.zshrc
+#
+# Basé sur :
 # Fichier de configuration principal de zsh
 # Formation Debian GNU/Linux par Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
 
-################
-# 1. Les alias #
-################
+#################
+# 1.1 Les alias #
+#################
 
 # Gestion du 'ls' : couleur & ne touche pas aux accents
 alias ls='ls -F -T0 -h --color=auto'
@@ -38,7 +40,15 @@ alias su='su -l'
 
 alias vi='vim'
 
-alias ack='ack-grep'
+#####################
+# 1.2 Les fonctions #
+#####################
+
+function mkcd() {
+    mkdir -p "$1" && cd "$1";
+}
+
+
 
 #######################################
 # 2. Prompt et définition des touches #
