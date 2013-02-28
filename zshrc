@@ -1,11 +1,13 @@
 # /etc/zsh/zshrc ou ~/.zshrc
+#
+# Basé sur :
 # Fichier de configuration principal de zsh
 # Formation Debian GNU/Linux par Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
 
-################
-# 1. Les alias #
-################
+#################
+# 1.1 Les alias #
+#################
 
 # Gestion du 'ls' : couleur & ne touche pas aux accents
 alias ls='ls -F -T0 -h --color=auto'
@@ -29,7 +31,6 @@ alias less='less -q'
 alias s='cd ..'
 alias df='df -h'
 alias du='du -h'
-alias m='mutt -y'
 alias md='mkdir'
 alias rd='rmdir'
 alias upgrade='apt-get update && apt-get upgrade && apt-get clean'
@@ -38,7 +39,25 @@ alias su='su -l'
 
 alias vi='vim'
 
-alias ack='ack-grep'
+
+# Git
+alias gs="git status" #N.B. Overrides ghostscript (probably not important if you don't use it)
+alias gd="git diff"
+alias gc="git commit"
+alias gl='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
+
+
+
+
+#####################
+# 1.2 Les fonctions #
+#####################
+
+function mkcd() {
+    mkdir -p "$1" && cd "$1";
+}
+
+
 
 #######################################
 # 2. Prompt et définition des touches #
