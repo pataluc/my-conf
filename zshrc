@@ -39,6 +39,8 @@ alias su='su -l'
 
 alias vi='vim'
 
+alias ipwan='curl ifconfig.me'
+
 
 # Git
 alias gs="git status" #N.B. Overrides ghostscript (probably not important if you don't use it)
