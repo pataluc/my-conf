@@ -345,7 +345,7 @@ zle -N copy-search-as-buffer
 
 #cd -
 
-if ! type "notify-send" > /dev/null; then
+if type "notify-send" > /dev/null; then
 
     # end and compare timer, notify-send if needed
     function notifyosd-precmd() {
