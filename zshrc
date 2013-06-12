@@ -292,6 +292,8 @@ export HISTFILE=$HOME/.history
 # Chaque ligne est ajoutée dans l'historique à mesure qu'elle est tapée
 setopt inc_append_history
 
+setopt SHARE_HISTORY
+
 # Ne stocke pas  une ligne dans l'historique si elle  est identique à la
 # précédente
 setopt hist_ignore_dups
@@ -374,3 +376,4 @@ if type "notify-send" > /dev/null; then
     #preexec_functions+=( notifyosd-preexec )
     preexec_functions=( notifyosd-preexec )
 fi
+
