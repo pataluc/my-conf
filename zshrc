@@ -349,12 +349,15 @@ if type "notify-send" > /dev/null; then
 
     # end and compare timer, notify-send if needed
     function notifyosd-precmd() {
-        if [ ! -z "$cmd" ]; then
+        if [ ! -z "$cmd" ]
+        then
             cmd_end=`date +%s`
             ((cmd_time=$cmd_end - $cmd_start))
-        fi                                                                                                                              
-        if [ ! -z "$cmd" -a $cmd_time -gt 10 ]; then
-            notify-send -i utilities-terminal -u low "$cmd_basename completed" "\"$cmd\" took $cmd_time seconds"
+
+            if [ $cmd_time -gt 10 ]
+            then
+                notify-send -i utilities-terminal -u low "$cmd_basename completed" "\"$cmd\" took $cmd_time seconds"
+            fi
             unset cmd
         fi
     }
