@@ -10,7 +10,7 @@
 #################
 
 # Gestion du 'ls' : couleur & ne touche pas aux accents
-alias ls='ls -F -T0 -h --color=auto'
+alias ls='ls -F -T0 -h --color=auto --group-directories-first'
 
 # Demande confirmation avant d'écraser un fichier
 alias cp='cp -i'
