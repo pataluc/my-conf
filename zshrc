@@ -118,7 +118,7 @@ function getGitBranch {
 function getGitStatus {
 
     if [[ $(git symbolic-ref HEAD 2> /dev/null) != "" ]]; then
-        git status | grep "nothing to commit" > /dev/null 2>&1
+        git status | grep -E "nothing to commit|rien à valider" > /dev/null 2>&1
         if [[ $? -eq 0 ]]; then
             echo "ok"
         else
