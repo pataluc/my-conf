@@ -8,5 +8,3 @@
     df = diff
     ci = commit
     br = branch
-[push]
-	default = simple
