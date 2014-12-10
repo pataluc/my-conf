@@ -5,3 +5,4 @@ augroup filetype
 augroup END
 
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+autocmd BufRead,BufNewFile /etc/php5/fpm/* set syntax=dosini
