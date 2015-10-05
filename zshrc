@@ -146,6 +146,7 @@ function gitPrompt {
 }
 
 PROMPT='${bold}${cyan}%D{%H:%M:%S} ${usercolor}%n${yellow}@${white}%m ${blue}%~ $(gitPrompt)${yellow}%# ${white}${thin}'
+ 
 
 
 # Console linux, dans un screen ou un rxvt
