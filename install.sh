@@ -2,20 +2,22 @@
 
 cd ~
 
+ArchiveAndLink() {
+    if [ -e $2 ]; then
+        mv $2 ${2}.old-my-conf
+    fi
+    ln -s $1 $2
+}
+
 # zshrc
-mv .zshrc .zshrc.old-my-conf
-ln -s my-conf/zshrc .zshrc
+ArchiveAndLink my-conf/zshrc .zshrc
 
 #vim
-mv .vim .vim.old-my-conf
-mv .vimrc .vimrc.old-my-conf
-ln -s my-conf/vim .vim
-ln -s my-conf/vimrc .vimrc
+ArchiveAndLink my-conf/vim .vim
+ArchiveAndLink my-conf/vimrc .vimrc
 
 #git
-mv .gitconfig .gitconfig.old-my-conf
-ln -s my-conf/gitconfig .gitconfig
+ArchiveAndLink my-conf/gitconfig .gitconfig
 
 #screen
-mv .screenrc .screenrc.old-my-conf
-ln -s my-conf/screenrc .screenrc
+ArchiveAndLink my-conf/screenrc .screenrc
