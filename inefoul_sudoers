@@ -1,0 +1,1 @@
+inefoul ALL=(ALL:ALL) NOPASSWD: /home/inefoul/.bin/addHost.sh
