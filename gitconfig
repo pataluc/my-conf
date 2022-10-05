@@ -1,13 +1,26 @@
 [user]
-	name = Luc Fouin
-	email = luc.fouin@gmail.com
-[credential]
-	helper = cache --timeout=3600
+	name = FOUIN Luc (i-BP)
+	email = luc.fouin@i-bp.fr
+[core]
+    pager = cat
+[push]
+	default = simple
+	followTags = true
+[branch]
+	autosetuprebase = always
 [alias]
+    ph = push
+    pl = pull
     st = status
+    d = diff
     df = diff
     ci = commit
+    co = checkout
     br = branch
-    lg = log --graph --date-order --date=short --pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)%C(reset)'
-[push]
-	default = matching
+    lg = !git --no-pager log -n 10 --graph --date-order --date=short --pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%ci)%C(reset)'
+    find-merge = !"f() { git rev-list $1..master --ancestry-path --merges --reverse | head -1; }; f"
+[http]
+	sslVerify = false
+	proxy = http://o3ib2506.ctr.ibp:8888
+[https]
+	proxy = http://o3ib2506.ctr.ibp:8888

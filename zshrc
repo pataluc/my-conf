@@ -1,9 +1,17 @@
+wsl.exe -d wsl-vpnkit service wsl-vpnkit start >/dev/null 2>&1
+
+
 # /etc/zsh/zshrc ou ~/.zshrc
 #
 # Basé sur :
 # Fichier de configuration principal de zsh
 # Formation Debian GNU/Linux par Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
+
+PATH=$PATH:~/.bin
+source <(oc completion zsh)
+
+export MAVEN_OPTS=-Dmaven.wagon.http.ssl.insecure=true
 
 #################
 # 1.1 Les alias #
@@ -389,6 +397,7 @@ fi
 # then automatically put us into a screen(1) session.   Only try once
 # -- if $STARTED_SCREEN is set, don't try it again, to avoid looping
 # if screen fails for some reason.
+export SCREENDIR=$HOME/.screen
 if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" != x ]
 then
   STARTED_SCREEN=1 ; export STARTED_SCREEN
@@ -399,3 +408,10 @@ then
   echo "Screen failed! continuing with normal bash startup"
 fi
 # [end of auto-screen snippet]
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+sudo /home/inefoul/.bin/addHost.sh
