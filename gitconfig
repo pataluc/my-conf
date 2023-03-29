@@ -3,6 +3,7 @@
 	email = luc.fouin@i-bp.fr
 [core]
     pager = cat
+    editor = vim
 [push]
 	default = simple
 	followTags = true
@@ -24,3 +25,5 @@
 	proxy = http://o3ib2506.ctr.ibp:8888
 [https]
 	proxy = http://o3ib2506.ctr.ibp:8888
+[safe]
+	directory = %(prefix)///wsl$/Ubuntu-22.04/home/inefoul/w

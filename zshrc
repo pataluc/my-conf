@@ -9,9 +9,25 @@ wsl.exe -d wsl-vpnkit service wsl-vpnkit start >/dev/null 2>&1
 # http://formation-debian.via.ecp.fr/
 
 PATH=$PATH:~/.bin
-source <(oc completion zsh)
+#export KUBECONFIG=$(find ~/.kube/clusters -type f | sort -r | sed ':a;N;s/\n/:/;ba')
+
+source ~/.bin/kube-ps1.sh
+
+alias helm='https_proxy=http://o3ib2506.ctr.ibp:8889 helm'
+alias octail='oc logs --tail 100 --follow'
+alias scout='https_proxy=http://o3ib2506.ctr.ibp:8888 docker scout cves --only-severity high,critical'
+alias snyktest='https_proxy=http://o3ib2506.ctr.ibp:8889 snyk container test --severity-threshold=high'
 
 export MAVEN_OPTS=-Dmaven.wagon.http.ssl.insecure=true
+
+
+fix_wsl2_interop() {
+    for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+        if [[ -e "/run/WSL/${i}_interop" ]]; then
+            export WSL_INTEROP=/run/WSL/${i}_interop
+        fi
+    done
+}
 
 #################
 # 1.1 Les alias #
@@ -116,7 +132,7 @@ setopt PROMPT_SUBST
 
 # Get the current Git branch without parenthesis
 function getGitBranch {
-    git symbolic-ref HEAD | cut -d'/' -f3
+    git symbolic-ref HEAD | sed --expression 's!refs/heads/!!' --expression 's/feature/f/' --expression 's/bugfix/b/' --expression 's/release/r/'
 }
 
 # Get the current Git status
@@ -154,7 +170,7 @@ function gitPrompt {
 }
 
 PROMPT='${bold}${cyan}%D{%H:%M:%S} ${usercolor}%n${yellow}@${white}%m ${blue}%~ $(gitPrompt)${yellow}%# ${white}${thin}'
- 
+RPROMPT='$(kube_ps1)'
 
 
 # Console linux, dans un screen ou un rxvt
@@ -415,3 +431,13 @@ export NVM_DIR="$HOME/.nvm"
 
 
 sudo /home/inefoul/.bin/addHost.sh
+
+get_cert_chain()
+{
+  openssl s_client -showcerts -verify 5 -connect $1:443 -proxy o3ib2506.ctr.ibp:8888 < /dev/null |
+    awk '/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print >out}'
+  for cert in *.pem; do
+    newname=$(openssl x509 -noout -subject -in $cert | sed -nE 's/.*CN ?= ?(.*)/\1/; s/[ ,.*]/_/g; s/__/_/g; s/_-_/-/; s/^_//g;p' | tr '[:upper:]' '[:lower:]').crt
+    echo "${newname}"; mv "${cert}" "${newname}"
+  done
+}
