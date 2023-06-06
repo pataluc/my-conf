@@ -388,9 +388,7 @@ if type "notify-send" > /dev/null; then
 fi
 
 
-if [ -f ~/my-conf/zshrc_modules ]; then
-    for module in ~/my-conf/zshrc_modules/*; do
-        source $module
-    done
-fi
+for module in ~/.zshrc_modules_*; do
+    source $module
+done
 
