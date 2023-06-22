@@ -75,6 +75,8 @@ endif
 "autocmd BufNewfile,BufRead *.h set tabstop=4
 "autocmd BufNewfile,BufRead *.cpp set expandtab
 "autocmd BufNewfile,BufRead *.cpp set tabstop=4
+autocmd BufNewfile,BufRead *.yaml set tabstop=2
+autocmd BufNewfile,BufRead *.yml set tabstop=2
 autocmd BufNewfile,BufRead * set expandtab
 autocmd BufNewfile,BufRead * set tabstop=4
 

@@ -108,7 +108,7 @@ setopt PROMPT_SUBST
 
 # Get the current Git branch without parenthesis
 function getGitBranch {
-    git symbolic-ref HEAD | cut -d'/' -f3
+    git symbolic-ref HEAD | sed --expression 's!refs/heads/!!' --expression 's/feature/f/' --expression 's/bugfix/b/' --expression 's/release/r/'
 }
 
 # Get the current Git status
@@ -399,3 +399,9 @@ then
   echo "Screen failed! continuing with normal bash startup"
 fi
 # [end of auto-screen snippet]
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/celuc/google-cloud-sdk/path.zsh.inc' ]; then . '/home/celuc/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/celuc/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/celuc/google-cloud-sdk/completion.zsh.inc'; fi
