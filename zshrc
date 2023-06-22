@@ -9,6 +9,10 @@
 # 1.1 Les alias #
 #################
 
+if [ -f ~/my-conf/aliases ]; then
+    source ~/my-conf/aliases
+fi
+
 # Gestion du 'ls' : couleur & ne touche pas aux accents
 alias ls='ls -F -T0 -h --color=auto --group-directories-first'
 
@@ -369,7 +373,7 @@ if type "notify-send" > /dev/null; then
 
     # make sure this plays nicely with any existing precmd
     #precmd_functions+=( notifyosd-precmd )
-    precmd_functions=( notifyosd-precmd )
+    #precmd_functions=( notifyosd-precmd )
 
     # get command name and start the timer
     function notifyosd-preexec() {
@@ -384,24 +388,12 @@ if type "notify-send" > /dev/null; then
 fi
 
 
-# Auto-screen invocation. see: http://taint.org/wk/RemoteLoginAutoScreen
-# if we're coming from a remote SSH connection, in an interactive session
-# then automatically put us into a screen(1) session.   Only try once
-# -- if $STARTED_SCREEN is set, don't try it again, to avoid looping
-# if screen fails for some reason.
-if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x -a "${SSH_TTY:-x}" != x ]
-then
-  STARTED_SCREEN=1 ; export STARTED_SCREEN
-  [ -d $HOME/lib/screen-logs ] || mkdir -p $HOME/lib/screen-logs
-  sleep 1
-  screen -R -D && exit 0
-  # normally, execution of this rc script ends here...
-  echo "Screen failed! continuing with normal bash startup"
-fi
-# [end of auto-screen snippet]
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/celuc/google-cloud-sdk/path.zsh.inc' ]; then . '/home/celuc/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/celuc/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/celuc/google-cloud-sdk/completion.zsh.inc'; fi
+
+for module in ~/.zshrc_modules_*; do
+    source $module
+done
