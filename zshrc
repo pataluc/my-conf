@@ -8,15 +8,15 @@ wsl.exe -d wsl-vpnkit service wsl-vpnkit start >/dev/null 2>&1
 # Formation Debian GNU/Linux par Alexis de Lattre
 # http://formation-debian.via.ecp.fr/
 
-PATH=$PATH:~/.bin
+PATH=$PATH:~/.bin:~/.local/bin
 #export KUBECONFIG=$(find ~/.kube/clusters -type f | sort -r | sed ':a;N;s/\n/:/;ba')
 
 source ~/.bin/kube-ps1.sh
 
-alias helm='https_proxy=http://o3ib2506.ctr.ibp:8889 helm'
+alias helm='https_proxy=http://o3ib2506.ctr.ibp:8889 no_proxy=intrabpce.fr helm'
 alias octail='oc logs --tail 100 --follow'
 alias scout='https_proxy=http://o3ib2506.ctr.ibp:8888 docker scout cves --only-severity high,critical'
-alias snyktest='https_proxy=http://o3ib2506.ctr.ibp:8889 snyk container test --severity-threshold=high'
+alias snyktest='https_proxy=http://o3ib2506.ctr.ibp:8888 snyk container test --severity-threshold=high'
 
 export MAVEN_OPTS=-Dmaven.wagon.http.ssl.insecure=true
 
@@ -434,7 +434,7 @@ sudo /home/inefoul/.bin/addHost.sh
 
 get_cert_chain()
 {
-  openssl s_client -showcerts -verify 5 -connect $1:443 -proxy o3ib2506.ctr.ibp:8888 < /dev/null |
+  openssl s_client -showcerts -verify 5 -connect $1:443 -proxy proxy.ctr.ibp:8080 < /dev/null |
     awk '/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print >out}'
   for cert in *.pem; do
     newname=$(openssl x509 -noout -subject -in $cert | sed -nE 's/.*CN ?= ?(.*)/\1/; s/[ ,.*]/_/g; s/__/_/g; s/_-_/-/; s/^_//g;p' | tr '[:upper:]' '[:lower:]').crt

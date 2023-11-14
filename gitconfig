@@ -22,8 +22,8 @@
     find-merge = !"f() { git rev-list $1..master --ancestry-path --merges --reverse | head -1; }; f"
 [http]
 	sslVerify = false
-	proxy = http://o3ib2506.ctr.ibp:8888
+	proxy = http://proxy.ctr.ibp:8080
 [https]
-	proxy = http://o3ib2506.ctr.ibp:8888
+	proxy = http://proxy.ctr.ibp:8080
 [safe]
 	directory = %(prefix)///wsl$/Ubuntu-22.04/home/inefoul/w
